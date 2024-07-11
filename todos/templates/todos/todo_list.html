@@ -8,7 +8,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Título</th>
                     <th scope="col">Criado em</th>
                     <th scope="col">Data de entrega</th>
@@ -19,14 +18,14 @@
             <tbody>
                 {% for todo in todo_list %}
                     <tr>
-                        <th scope="row">{{ todo.pk }}</th>
                         <td>{{ todo.title }}</td>
                         <td>{{ todo.created_at }}</td>
                         <td>{{ todo.deadline|default:"-" }}</td>
                         <td>{{ todo.finished_at|default:"-" }}</td>
                         <td>
                             <a href="#" class="btn btn-primary btn-sm">Concluir</a>
-                            <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+                            <a href="{% url "todo_update" pk=todo.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                            <a href="{% url "todo_delete" pk=todo.pk %}" class="btn btn-danger btn-sm">Excluir</a>
                         </td>
                     </tr>
                 {% endfor %}
